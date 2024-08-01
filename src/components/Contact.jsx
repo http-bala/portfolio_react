@@ -1,6 +1,29 @@
-import React from 'react'
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
-const Contact = () => {
+ const Contact = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('service_jd4euyn', 'template_nhyhdnq', form.current, {
+        publicKey: 'Y2ENwfQU1qZ4vtTX1',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+          alert(
+            'Your message has been sent successfully. I will get back to you as soon as possible.'
+          )
+          form.current.reset();
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+  };
     return (
         <div className='max-w-screen-xl m-auto' id="contact">
             <section className=" text-white " id="contact">
@@ -110,7 +133,7 @@ const Contact = () => {
                                 <h2 className="mb-4 text-2xl font-bold dark:text-white">
                                     Ready to Get Started?
                                 </h2>
-                                <form id="contactForm">
+                                <form id="contactForm" ref={form} onSubmit={sendEmail}>
                                     <div className="mb-6">
                                         <div className="mx-0 mb-1 sm:mb-4">
                                             <div className="mx-0 mb-1 sm:mb-4">
@@ -123,8 +146,8 @@ const Contact = () => {
                                                     id="name"
                                                     autoComplete="given-name"
                                                     placeholder="Your name"
-                                                    className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
-                                                    name="name"
+                                                    className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md text-purple-900 sm:mb-0"
+                                                    name="from_name"
                                                 />
                                             </div>
                                             <div className="mx-0 mb-1 sm:mb-4">
@@ -137,7 +160,7 @@ const Contact = () => {
                                                     id="email"
                                                     autoComplete="email"
                                                     placeholder="Your email address"
-                                                    className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
+                                                    className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md text-purple-900 sm:mb-0"
                                                     name="email"
                                                 />
                                             </div>
@@ -149,11 +172,11 @@ const Contact = () => {
                                             />
                                             <textarea
                                                 id="textarea"
-                                                name="textarea"
+                                                name="message"
                                                 cols={30}
                                                 rows={5}
                                                 placeholder="Write your message..."
-                                                className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
+                                                className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md  text-purple-900 sm:mb-0"
                                                 defaultValue={""}
                                             />
                                         </div>
