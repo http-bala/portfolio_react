@@ -11,77 +11,74 @@ import {
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const Navbar = () => {
-  const [Nav, setNav] = useState(true);
+  const [navOpen, setNavOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [sidebarDropdownOpen, setSidebarDropdownOpen] = useState(false);
 
-  const handleClick = () => setNav(false);
-  const handleCloseClick = () => setNav(true);
+  const toggleNav = () => setNavOpen(!navOpen);
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const toggleSidebarDropdown = () => setSidebarDropdownOpen(!sidebarDropdownOpen);
 
   return (
-    
-    <nav
-      className="relative bg-cover  border-b bg-center bg-no-repeat backdrop-blur-lg shadow-lg py-3"
-    >
+    <nav className="relative bg-gradient-to-tl from-purple-900 to-purple-600 border-b shadow-lg py-3">
       <div className="md:max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="text-4xl font-bold text-accent flex items-center">
-          {/* <img src="/path-to-your-logo.png" alt="Logo" className="h-8 mr-2" /> */}
+        <div className="text-4xl font-bold text-yellow-400 flex items-center">
           BALAKRISHNA
         </div>
 
         {/* Hamburger Menu */}
-        <div className="md:hidden">
-          {Nav ? (
-            <FaBars size={24} color="#FFFFFF" onClick={handleClick} />
+        <div className="md:hidden z-50">
+          {!navOpen ? (
+            <FaBars size={24} color="#FFFFFF" onClick={toggleNav} />
           ) : (
-            <FaTimes size={24} color="#FFFFFF" onClick={handleCloseClick} />
+            <FaTimes size={24} color="#FFFFFF" onClick={toggleNav} />
           )}
         </div>
 
         {/* Nav Links */}
-        <ul
-          className={`absolute md:static top-16 left-0 md:top-0 w-full md:w-auto bg-white/10 md:bg-transparent backdrop-blur-md transition-transform duration-500 ${
-            Nav ? "hidden md:flex" : "block"
-          } flex-col md:flex-row items-center justify-center text-white`}
-        >
-          <AnchorLink href="#home" className="mx-4 text-lg font-semibold hover:text-accent transition duration-300">
+        <ul className="hidden md:flex items-center space-x-6 text-white text-lg font-semibold">
+          <AnchorLink
+            href="#home"
+            className="hover:text-yellow-400 transition duration-300"
+          >
             Home
           </AnchorLink>
-          <AnchorLink href="#about" className="mx-4 text-lg font-semibold hover:text-accent transition duration-300">
+          <AnchorLink
+            href="#about"
+            className="hover:text-yellow-400 transition duration-300"
+          >
             About
           </AnchorLink>
-          <AnchorLink href="#services" className="mx-4 text-lg font-semibold hover:text-accent transition duration-300">
-            Service
+          <AnchorLink
+            href="#services"
+            className="hover:text-yellow-400 transition duration-300"
+          >
+            Services
           </AnchorLink>
-          <AnchorLink href="#team" className="mx-4 text-lg font-semibold hover:text-accent transition duration-300">
-            Team
-          </AnchorLink>
-
-          {/* Projects Dropdown */}
-          <div className="relative group mx-4">
-            <button className="text-lg font-semibold hover:text-accent transition duration-300">
+          <div className="relative group">
+            <button
+              onClick={toggleDropdown}
+              className="hover:text-yellow-400 transition duration-300 flex items-center"
+            >
               Projects
             </button>
             <ul
-              className="absolute hidden group-hover:block bg-gradient-to-tl from-purple-500 to-fuchsia-600 text-white p-2 rounded shadow-lg w-[200px] transition-all duration-300"
-              style={{ borderRadius: "8px" }}
+              className={`absolute bg-gradient-to-tl from-purple-500 to-fuchsia-600 text-white p-2 rounded shadow-lg w-[200px] transform ${
+                dropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+              } transition-all duration-300 origin-top`}
             >
-              <li className="relative group py-2 px-2 font-bold hover:border-b hover:text-accent hover:px-4 transition-all duration-300">
-                <AnchorLink href="#projects" className="flex items-center">
-                  Project 1
-                </AnchorLink>
+              <li className="py-2 px-2 hover:text-yellow-400">
+                <AnchorLink href="#project1">Project 1</AnchorLink>
               </li>
-              <li className="relative group py-2 px-2 font-bold hover:border-b hover:text-accent hover:px-4 transition-all duration-300">
-                <AnchorLink href="#project-design" className="flex items-center">
-                  Project Design
-                </AnchorLink>
+              <li className="py-2 px-2 hover:text-yellow-400">
+                <AnchorLink href="#project-design">Project Design</AnchorLink>
               </li>
             </ul>
           </div>
-
-          {/* Contact Button */}
           <AnchorLink
             href="#contact"
-           className="mx-4 text-lg font-semibold hover:text-accent transition duration-300"
+            className="hover:text-yellow-400 transition duration-300"
           >
             Contact
           </AnchorLink>
@@ -89,21 +86,158 @@ const Navbar = () => {
 
         {/* Social Media Icons */}
         <div className="hidden md:flex items-center space-x-4">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white  hover:text-pink-500">
-            <FaInstagram size={28} />
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-pink-500"
+          >
+            <FaInstagram size={24} />
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-black">
-            <FaGithub size={28} />
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-gray-700"
+          >
+            <FaGithub size={24} />
           </a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-500">
-            <FaYoutube size={28} />
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-red-500"
+          >
+            <FaYoutube size={24} />
           </a>
-          <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="text-white hover:text-lime-400">
-            <FaWhatsapp size={28} />
+          <a
+            href="https://wa.me/1234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-green-500"
+          >
+            <FaWhatsapp size={24} />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-500">
-            <FaLinkedin size={28} />
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-blue-500"
+          >
+            <FaLinkedin size={24} />
           </a>
+        </div>
+      </div>
+
+      {/* Full-Screen Sidebar for Mobile */}
+      <div
+        className={`fixed inset-0 bg-gradient-to-tl from-purple-900 to-purple-600 text-white z-40 transform ${
+          navOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300`}
+      >
+        <div className="flex flex-col justify-center items-center h-full space-y-6 text-lg font-semibold">
+          <AnchorLink
+            href="#home"
+            className="hover:text-yellow-400 transition duration-300"
+            onClick={toggleNav}
+          >
+            Home
+          </AnchorLink>
+          <AnchorLink
+            href="#about"
+            className="hover:text-yellow-400 transition duration-300"
+            onClick={toggleNav}
+          >
+            About
+          </AnchorLink>
+          <AnchorLink
+            href="#services"
+            className="hover:text-yellow-400 transition duration-300"
+            onClick={toggleNav}
+          >
+            Services
+          </AnchorLink>
+          <div className="relative">
+            <p
+              onClick={toggleSidebarDropdown}
+              className="mx-6 hover:text-yellow-400 transition duration-300"
+            >Projects
+            </p>
+            <ul
+              className={`text-center overflow-hidden transition-all duration-300 ${
+                sidebarDropdownOpen ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <li className="py-2">
+                <AnchorLink
+                  href="#project1"
+                  className="hover:text-yellow-400 transition duration-300"
+                  onClick={toggleNav}
+                >
+                  Project 1
+                </AnchorLink>
+              </li>
+              <li className="py-2">
+                <AnchorLink
+                  href="#project-design"
+                  className="hover:text-yellow-400 transition duration-300"
+                  onClick={toggleNav}
+                >
+                  Project Design
+                </AnchorLink>
+              </li>
+            </ul>
+          </div>
+          <AnchorLink
+            href="#contact"
+            className="hover:text-yellow-400 transition duration-300"
+            onClick={toggleNav}
+          >
+            Contact
+          </AnchorLink>
+          {/* Social Media Icons */}
+          <div className="flex space-x-4 mt-4">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-pink-500"
+            >
+              <FaInstagram size={28} />
+            </a>
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-700"
+            >
+              <FaGithub size={28} />
+            </a>
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-red-500"
+            >
+              <FaYoutube size={28} />
+            </a>
+            <a
+              href="https://wa.me/1234567890"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-green-500"
+            >
+              <FaWhatsapp size={28} />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-500"
+            >
+              <FaLinkedin size={28} />
+            </a>
+          </div>
         </div>
       </div>
     </nav>

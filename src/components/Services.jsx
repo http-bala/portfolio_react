@@ -12,7 +12,7 @@ const Services = () => {
     >
       <div className="max-w-screen-xl mx-auto px-6 sm:px-12 lg:px-16 text-white">
          <h1 className="text-5xl text-center font-extrabold leading-tight mb-9 ">
-            My <span style={{ color: '#F2BE21' }}>service</span>
+            My <span style={{ color: '#F2BE21' }}>Service</span>
           </h1>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Service Card */}

@@ -5,20 +5,20 @@ import about2 from './assets/about2.jpg'
 
 const About = () => {
   return (
-    <section className="bg-white flex flex-col align-middle justify-center h-[90vh]" id="about">
+    <section className="bg-white flex flex-col align-middle justify-center  h-auto lg:h-[90vh] py-10 md:py-0"  id="about">
       <div className="max-w-screen-xl mx-auto px-6 sm:px-12 lg:px-16 flex flex-wrap items-center">
         {/* Image Section */}
         <div className="sm:w-1/2 text-center sm:text-left">
           <img 
             src={about2} 
             alt="About Balakrishna" 
-            className=" w-4/5 mx-auto sm:w-full"
+            className=" w-2/2 mx-auto sm:w-full"
           />
         </div>
 
         {/* Content Section */}
         <div className="sm:w-1/2 mt-8 sm:mt-0">
-          <h1 className="text-5xl font-extrabold leading-tight mb-4 text-gray-900">
+          <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4 text-gray-900">
             About <span style={{ color: '#F2BE21' }}>Me</span>
           </h1>
           <p className="text-gray-600 mb-6">

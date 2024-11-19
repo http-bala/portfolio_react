@@ -46,7 +46,7 @@ const Contact = () => {
     <div className="bg-white" id="contact">
       <section className="max-w-screen-xl mx-auto px-6 py-16 pb-20">
         <div className="max-w-7xl mx-auto text-center mb-12">
-          <h1 className="text-5xl text-center font-extrabold leading-tight text-gray-900">
+          <h1 className=" text-4xl sm:text-5xl text-center font-extrabold leading-tight text-gray-900">
           Get in  <span style={{ color: '#F2BE21' }}>Touch 💡</span>
           </h1>
           <p className="text-gray-600 mt-4">
@@ -54,10 +54,10 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-stretch justify-between">
+        <div className="flex flex-col md:flex-row items-stretch  justify-between">
           {/* Contact Information Section */}
           <div className="md:w-1/2 pr-8 mb-8 md:mb-0">
-            <p className="text-gray-600 mb-6 leading-relaxed">
+            <p className="text-gray-600 mb-6 leading-relaxed text-center sm:text-left">
               I'm Balakrishna Kolla, a passionate full-stack developer specializing in building
               responsive websites, web applications, and backend systems. Feel free to reach out for
               project discussions or collaborations!

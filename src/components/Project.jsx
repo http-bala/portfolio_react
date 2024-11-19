@@ -15,7 +15,7 @@ const Project = () => {
       <div className="max-w-screen-xl mx-auto px-6">
         {/* Section Heading */}
         <div className="text-center mb-12">
-        <h1 className="text-5xl text-center font-extrabold leading-tight">
+          <h1 className="text-5xl text-center font-extrabold leading-tight">
             My <span style={{ color: '#F2BE21' }}>Project</span>
           </h1>
           <p className="text-gray-300 mt-4">
@@ -23,9 +23,9 @@ const Project = () => {
           </p>
         </div>
 
-        {/* Asymmetric Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
+        {/* Projects List/Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[ 
             {
               image: image2,
               title: "Netflix Clone",
@@ -68,7 +68,7 @@ const Project = () => {
               target="_blank"
               rel="noopener noreferrer"
               key={index}
-              className={`relative group overflow-hidden rounded-lg shadow-lg ${project.span}`}
+              className={`relative group overflow-hidden rounded-lg shadow-lg ${project.span} block`}
             >
               {/* Project Image */}
               <img
