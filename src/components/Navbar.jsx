@@ -12,15 +12,13 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const Navbar = () => {
   const [navOpen, setNavOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [sidebarDropdownOpen, setSidebarDropdownOpen] = useState(false);
 
   const toggleNav = () => setNavOpen(!navOpen);
-  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
   const toggleSidebarDropdown = () => setSidebarDropdownOpen(!sidebarDropdownOpen);
 
   return (
-    <nav className="relative bg-gradient-to-tl from-purple-900 to-purple-600 border-b shadow-lg py-3">
+    <nav className="relative border-b shadow-lg py-3">
       <div className="md:max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="text-4xl font-bold text-yellow-400 flex items-center">
@@ -57,16 +55,11 @@ const Navbar = () => {
             Services
           </AnchorLink>
           <div className="relative group">
-            <button
-              onClick={toggleDropdown}
-              className="hover:text-yellow-400 transition duration-300 flex items-center"
-            >
+            <button className="hover:text-yellow-400 transition duration-300 flex items-center">
               Projects
             </button>
             <ul
-              className={`absolute bg-gradient-to-tl from-purple-500 to-fuchsia-600 text-white p-2 rounded shadow-lg w-[200px] transform ${
-                dropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
-              } transition-all duration-300 origin-top`}
+              className="absolute bg-gradient-to-tl from-purple-500 to-fuchsia-600 text-white p-2 rounded shadow-lg w-[200px] transform scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 origin-top"
             >
               <li className="py-2 px-2 hover:text-yellow-400">
                 <AnchorLink href="#project1">Project 1</AnchorLink>
@@ -161,7 +154,8 @@ const Navbar = () => {
             <p
               onClick={toggleSidebarDropdown}
               className="mx-6 hover:text-yellow-400 transition duration-300"
-            >Projects
+            >
+              Projects
             </p>
             <ul
               className={`text-center overflow-hidden transition-all duration-300 ${

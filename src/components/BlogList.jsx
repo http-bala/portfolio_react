@@ -61,6 +61,7 @@ const BlogList = () => {
                 date={formatDate(blog.date)} // Format date
                 postBy={blog.postBy}
                 title={blog.title}
+                content={blog.content}
               />
             ))}
       </div>
