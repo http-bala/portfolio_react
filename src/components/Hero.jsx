@@ -4,6 +4,8 @@ import { FaGithub } from "react-icons/fa";
 import Navbar from "./Navbar";
 import { motion } from "framer-motion";
 
+import { ReactTyped } from "react-typed";
+
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -30,7 +32,7 @@ const Hero = () => {
             <img
               src={Avtar_image}
               alt="hero image"
-              className="w-64 sm:w-80 lg:w-[400px] xl:w-[500px] transition-transform duration-500 ease-out"
+              className="w-70 sm:w-80 lg:w-[500px] xl:w-[600px] transition-transform duration-500 ease-out"
               style={{
                 transform: `translate(${(mousePosition.x - window.innerWidth / 2) * 0.02}px, ${(mousePosition.y - window.innerHeight / 2) * 0.02}px)`, // Image movement based on mouse position
               }}
@@ -40,13 +42,12 @@ const Hero = () => {
           {/* Details and Buttons */}
           <div className="order-2 lg:order-1 mt-10 lg:mt-0 lg:col-span-7 flex flex-col items-center lg:items-start">
             <motion.h1
-              className="text-4xl font-extrabold leading-tight tracking-tight text-center lg:text-left md:text-5xl xl:text-6xl"
+              className="text-3xl  sm:text-4xl font-extrabold leading-tight tracking-tight text-center lg:text-left md:text-5xl xl:text-6xl"
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, ease: "easeOut" }}
             >
-              I'<span className="text-accent">M</span> <br /> Full Stack
-              Developer
+              I'<span className="text-accent">M</span> <br /> <ReactTyped strings={["Full Stack Developer","Mern Stack Developer"]} typeSpeed={40}  backSpeed={50} loop />
             </motion.h1>
             <motion.p
               className="max-w-2xl mt-4 text-lg text-center lg:text-left lg:mt-6 font-light text-gray-200"

@@ -9,22 +9,16 @@ const BlogList = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/blogs');
+        const response = await axios.get('https://blog-api-one-mocha.vercel.app/api/blogs');
         const blogData = response.data;
-          // Sort blogs by date (descending) to show the most recent first
-        
-        // Add base URL if the image path is relative
-        const baseURL = 'http://localhost:5000/';
-        const blogsWithFullImages = blogData.map((blog) => ({
-          ...blog,
-          image: blog.image?.startsWith('http') ? blog.image : `${baseURL}${blog.image}`,
-        }));
 
-          const sortedBlogs = blogsWithFullImages.sort((a, b) => new Date(b.date) - new Date(a.date));
-          setBlogs(sortedBlogs.slice(0, 3)); // Display only the three most recent blogs
+        // Sort blogs by date (descending) to show the most recent ones first
+        const sortedBlogs = blogData.sort((a, b) => new Date(b.date) - new Date(a.date));
+        setBlogs(sortedBlogs.slice(0, 3)); // Display only the three most recent blogs
+      } catch (error) {
         console.error('Error fetching blogs:', error);
       } finally {
-        setLoading(false);
+        setLoading(false); // Stop the loading state
       }
     };
 
@@ -36,26 +30,39 @@ const BlogList = () => {
     return new Intl.DateTimeFormat('en-US', options).format(new Date(dateString));
   };
 
-  if (loading) {
-    return <div className="text-center">Loading blogs...</div>;
-  }
+  const SkeletonCard = () => (
+    <div className="bg-gradient-to-tl from-purple-900 via-purple-700 to-purple-600rounded-lg shadow-lg animate-pulse overflow-hidden">
+      <div className="w-full h-48 bg-purple-900"></div>
+      <div className="p-4">
+        <div className="h-6 bg-purple-400 rounded w-3/4 mb-2"></div>
+        <div className="h-4 bg-purple-400 rounded w-1/2 mb-2"></div>
+        <div className="h-4 bg-purple-400 rounded w-1/4"></div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="container mx-auto px-4 py-12">
+      {/* Section Title */}
       <h1 className="text-5xl text-center font-extrabold leading-tight text-gray-900 mb-8">
-        Recent <span style={{ color: '#F2BE21' }}>Blogs</span> 
+        Recent <span style={{ color: '#F2BE21' }}>Blogs</span>
       </h1>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {blogs.map((blog, index) => (
-          <BlogCard
-            key={index}
-            // image={blog.image || 'https://via.placeholder.com/600x400'} // Fallback image
-            image={'https://via.placeholder.com/600x400'} // Fallback image
-            date={formatDate(blog.date)} // Format date as "11 Nov 2024"
-            postBy={blog.postBy}
-            title={blog.title}
-          />
-        ))}
+        {/* Show Skeletons while Loading */}
+        {loading
+          ? Array(3)
+              .fill(0)
+              .map((_, index) => <SkeletonCard key={index} />)
+          : blogs.map((blog, index) => (
+              <BlogCard
+                key={index}
+                image={blog.image || 'https://via.placeholder.com/600x400'} // Default image
+                date={formatDate(blog.date)} // Format date
+                postBy={blog.postBy}
+                title={blog.title}
+              />
+            ))}
       </div>
     </div>
   );
